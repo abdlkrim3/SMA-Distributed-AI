@@ -1,0 +1,1 @@
+genetic algorith with SMA
