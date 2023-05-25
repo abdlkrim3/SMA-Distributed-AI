@@ -48,6 +48,6 @@ Make sure to download and include the Jade.jar file in your project's dependenci
 <img src="captures/target.png" alt="Input">
 
 
-##output
+## Output
 
 <img src="captures/solution.png" alt="ouput">
