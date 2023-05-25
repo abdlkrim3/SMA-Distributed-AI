@@ -43,7 +43,7 @@ This project has the following dependencies:
 Make sure to download and include the Jade.jar file in your project's dependencies before running the project.
 
 
-## Example Usage
+## Input
 
 <img src="captures/target.png" alt="Input">
 
