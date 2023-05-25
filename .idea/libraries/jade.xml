@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="jade">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/Genetic-Algorithm-SMA/tp_sma_ga/jade.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Genetic-Algorithm-SMA/jade.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
