@@ -11,7 +11,7 @@ import jade.lang.acl.ACLMessage;
 
 import java.util.*;
 
-public class MainAgentGA extends Agent {
+public class MasterAgentGA extends Agent {
     List<AgentFitness> agentsFitness=new ArrayList<>();
     Random rnd=new Random();
     @Override
@@ -71,36 +71,10 @@ public class MainAgentGA extends Agent {
             public void selection(){
                 agent1=agentsFitness.get(0);
                 agent2=agentsFitness.get(1);
-                sendMessage(agent1.getAid(),"chromosome", ACLMessage.REQUEST);
-                sendMessage(agent2.getAid(),"chromosome", ACLMessage.REQUEST);
             }
             public void crossover(){
-                ACLMessage aclMessage1=blockingReceive();
-                ACLMessage aclMessage2=blockingReceive();
-
-                int pointCroisment=rnd.nextInt(GAUtils.CHROMOSOME_SIZE-2);
-                pointCroisment++;
-                char [] chromosomeParent1=aclMessage1.getContent().toCharArray();
-                char [] chromosomeParent2=aclMessage2.getContent().toCharArray();
-                char [] chromosomeOffsring1= new char[GAUtils.CHROMOSOME_SIZE];
-                char [] chromosomeOffsring2= new char[GAUtils.CHROMOSOME_SIZE];
-                Individual individual1=new Individual();
-                for (int i=0;i<chromosomeParent1.length;i++) {
-                    chromosomeOffsring1[i]=chromosomeParent1[i];
-                    chromosomeOffsring2[i]=chromosomeParent2[i];
-                }
-                for (int i=0;i<pointCroisment;i++) {
-                    chromosomeOffsring1[i]=chromosomeParent2[i];
-                    chromosomeParent1[i]=chromosomeParent2[i];
-                }
-                int fitness=0;
-                for (int i=0;i<GAUtils.CHROMOSOME_SIZE;i++) {
-                    if(chromosomeOffsring1[i]==GAUtils.SOLUTION.charAt(i))
-                        fitness+=1;
-                }
-                agentsFitness.get(GAUtils.POPULATION_SIZE-2).setFitness(fitness);
-                sendMessage(agentsFitness.get(GAUtils.POPULATION_SIZE-2).getAid(),new String(chromosomeOffsring1),ACLMessage.REQUEST);
-                sendMessage(agentsFitness.get(GAUtils.POPULATION_SIZE-1).getAid(),new String(chromosomeOffsring2),ACLMessage.REQUEST);
+                sendMessage(agent1.getAid(),"crossover",ACLMessage.REQUEST);
+                sendMessage(agent2.getAid(),"crossover",ACLMessage.REQUEST);
                 ACLMessage receivedMsg1=blockingReceive();
                 ACLMessage receivedMsg2=blockingReceive();
                 setAgentFintess(receivedMsg1.getSender(), Integer.parseInt(receivedMsg1.getContent()));

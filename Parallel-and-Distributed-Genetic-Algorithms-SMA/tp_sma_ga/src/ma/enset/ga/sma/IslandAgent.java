@@ -10,11 +10,10 @@ import jade.lang.acl.ACLMessage;
 
 import java.util.*;
 
-public class PopulationAgent extends Agent {
+public class IslandAgent extends Agent {
     List<Individual> individuals=new ArrayList<>();
     Individual firstFitness;
     Individual secondFitness;
-    private int fitness;
     Random rnd=new Random();
     @Override
     protected void setup() {
@@ -29,11 +28,7 @@ public class PopulationAgent extends Agent {
         } catch (FIPAException e) {
             e.printStackTrace();
         }
-
-            for (int i=0;i<GAUtils.POPULATION_SIZE;i++){
-                individuals.add(new Individual());
-            }
-        //mutation
+        initialaizePopulation();
         addBehaviour(new CyclicBehaviour() {
             @Override
             public void action() {
@@ -44,7 +39,7 @@ public class PopulationAgent extends Agent {
                             case "mutation":mutation();break;
                             case "fitness" : calculateFintess(receivedMSG);break;
                             case "chromosome":sendChromosome(receivedMSG);break;
-                            default:changeChromosome(receivedMSG);break;
+                            case "crossover":crossover(receivedMSG);break;
                         }
                     }
 
@@ -54,12 +49,23 @@ public class PopulationAgent extends Agent {
             }
         });
     }
+    public void initialaizePopulation(){
+        for (int i=0;i<GAUtils.POPULATION_SIZE;i++){
+            individuals.add(new Individual());
+        }
+    }
 
     private void mutation(){
         int index=rnd.nextInt(GAUtils.CHROMOSOME_SIZE);
         if (rnd.nextDouble()<GAUtils.MUTATION_PROB){
-            individuals.get(GAUtils.POPULATION_SIZE-1).getGenes()[index]=GAUtils.CHARATERS.charAt(rnd.nextInt(GAUtils.CHARATERS.length()));
+            individuals.get(individuals.size()-2).getGenes()[index]=GAUtils.CHARATERS.charAt(rnd.nextInt(GAUtils.CHARATERS.length()));
         }
+        index=rnd.nextInt(GAUtils.CHROMOSOME_SIZE);
+        if (rnd.nextDouble()<GAUtils.MUTATION_PROB){
+            individuals.get(individuals.size()-1).getGenes()[index]=GAUtils.CHARATERS.charAt(rnd.nextInt(GAUtils.CHARATERS.length()));
+        }
+
+
     }
 
     private void calculateFintess(ACLMessage receivedMSG){
@@ -77,12 +83,21 @@ public class PopulationAgent extends Agent {
         replyMsg.setContent(new String(individuals.get(0).getGenes()));
         send(replyMsg);
     }
-    private void  changeChromosome(ACLMessage receivedMSG){
-        char []oldGeenes=individuals.get(GAUtils.POPULATION_SIZE-1).getGenes();
-        char []newGenes =receivedMSG.getContent().toCharArray();
-        for (int i=0;i<oldGeenes.length;i++){
-            individuals.get(GAUtils.POPULATION_SIZE-1).getGenes()[i]=newGenes[i];
+    private void  crossover(ACLMessage receivedMSG){
+        int pointCroisment=rnd.nextInt(GAUtils.CHROMOSOME_SIZE-2);
+        pointCroisment++;
+        Individual individual1=new Individual();
+        Individual individual2=new Individual();
+        for (int i=0;i<individual1.getGenes().length;i++) {
+            individual1.getGenes()[i]=firstFitness.getGenes()[i];
+            individual2.getGenes()[i]=secondFitness.getGenes()[i];
         }
+        for (int i=0;i<pointCroisment;i++) {
+            individual1.getGenes()[i]=secondFitness.getGenes()[i];
+            individual2.getGenes()[i]=firstFitness.getGenes()[i];
+        }
+        individuals.set(individuals.size()-2,individual1);
+        individuals.set(individuals.size()-1,individual2);
 
         mutation();
         calculateFintess(receivedMSG);

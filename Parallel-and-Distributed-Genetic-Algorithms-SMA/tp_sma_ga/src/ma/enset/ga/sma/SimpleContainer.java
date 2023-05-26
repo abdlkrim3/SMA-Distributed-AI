@@ -15,10 +15,10 @@ public class SimpleContainer {
         AgentContainer agentContainer = runtime.createAgentContainer(profile);
         AgentController mainAgent=null;
         for (int i=0;i< GAUtils.POPULATION_SIZE;i++){
-            mainAgent = agentContainer.createNewAgent(String.valueOf(i), PopulationAgent.class.getName(), new Object[]{});
+            mainAgent = agentContainer.createNewAgent(String.valueOf(i), IslandAgent.class.getName(), new Object[]{});
             mainAgent.start();
         }
-         mainAgent = agentContainer.createNewAgent("mainAgent", MainAgentGA.class.getName(), new Object[]{});
+         mainAgent = agentContainer.createNewAgent("masterAgent", MasterAgentGA.class.getName(), new Object[]{});
         mainAgent.start();
 
 

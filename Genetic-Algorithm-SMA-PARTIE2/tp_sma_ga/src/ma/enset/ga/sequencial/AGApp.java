@@ -20,7 +20,7 @@ public class AGApp {
             population.mutation();
             population.calculateIndFintess();
             population.sortPopulation();
-            System.out.println("It :"+it+"Chromosome :"+Arrays.toString(population.getFitnessIndivd().getGenes())+" fitness :"+population.getFitnessIndivd().getFitness());
+            System.out.println("It : "+it+" Chromosome :"+Arrays.toString(population.getFitnessIndivd().getGenes())+" fitness :"+population.getFitnessIndivd().getFitness());
 
          it++;
         }

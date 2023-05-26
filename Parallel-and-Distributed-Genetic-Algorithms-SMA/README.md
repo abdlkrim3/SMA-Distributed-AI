@@ -1,11 +1,15 @@
-# Parallel an Distributed Genetic Algorithm for Word Search in Java
+# Parallel and Distributed Genetic Algorithm for Word Search in Java
 
 ## Introduction
-Parallel genetic algorithm is such an algorithm that uses multiple genetic algorithms to solve a single task [1]. All these algorithms try to solve the same task and after they’ve completed their job, the best individual of every algorithm is selected, then the best of them is selected, and this is the solution to a problem. This is one of the most popular approach to parallel genetic algorithms, even though there are others. This approach is often called ‘island model’ because populations are isolated from each other, like real-life creature populations may be isolated living on different islands. Image 1 illustrates that.
+Parallel genetic algorithm is such an algorithm that uses multiple genetic algorithms to solve a single task [1]. All these algorithms try to solve the same task \and after they’ve completed their job, the best individual of every algorithm is selected, then the best of them is selected, and this is the solution to a problem. This is one of the most popular approach to parallel genetic algorithms, even though there are others. This approach is often called ‘island model’ because populations are isolated from each other, like real-life creature populations may be isolated living on different islands. Image 1 illustrates that.
 
 This project implements a genetic algorithm in Java to search for a specific word or phrase. Each agent represents a population, and the algorithm evolves the populations through selection, reproduction, and evaluation operations.
 
 <img src="captures/architict.png" alt="Architecture">
+
+## Architecture
+
+<img src="captures/arch.png" alt="Architecture">
 
 ## Distributed genetic algorithm
 
@@ -73,4 +77,4 @@ Using parallel and distributed genetic algorithms one can increase performance o
 
 One of the main issues we have to deal with while using genetic algorithms is preliminary convergence to a subset of individuals that dominate others. Parallel and distributed genetic algorithms try to address it introducing differences between algorithms that make them to have different set of individuals.
 
-With parallel and distributed genetic algorithms individuals are more divergent, as a result it is possible to create less individuals than using non-parallel genetic algorithm, keeping solution quality at the same rates.
+With parallel and distributed genetic algorithms individuals are more divergent, as a result it is possible to create les individuals than using non-parallel genetic algorithm, keeping solution quality at the same rates.
