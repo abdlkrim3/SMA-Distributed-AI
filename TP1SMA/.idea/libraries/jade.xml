@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="jade">
+    <ANNOTATIONS>
+      <root url="file://$PROJECT_DIR$/javafx-sdk-19/lib" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/jade.jar!/" />
+      <root url="file://$PROJECT_DIR$/javafx-sdk-19/lib" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/javafx-sdk-19/lib" recursive="false" />
+  </library>
+</component>

@@ -1,4 +1,4 @@
-package ma.enset.ga.sma;
+package ma.enset.tp_qlearning_sma.sma;
 
 import jade.core.Profile;
 import jade.core.ProfileImpl;
@@ -14,11 +14,11 @@ public class SimpleContainer {
         profile.setParameter(Profile.MAIN_HOST,"localhost");
         AgentContainer agentContainer = runtime.createAgentContainer(profile);
         AgentController mainAgent=null;
-        for (int i=0;i< GAUtils.POPULATION_SIZE;i++){
-            mainAgent = agentContainer.createNewAgent(String.valueOf(i), IslandAgent.class.getName(), new Object[]{});
+        for (int i = 0; i< QLUtils.AGENT_SIZE; i++){
+            mainAgent = agentContainer.createNewAgent(String.valueOf(i), QLearningAgent.class.getName(), new Object[]{});
             mainAgent.start();
         }
-         mainAgent = agentContainer.createNewAgent("masterAgent", MasterAgentGA.class.getName(), new Object[]{});
+         mainAgent = agentContainer.createNewAgent("masterAgent", MasterAgentQL.class.getName(), new Object[]{});
         mainAgent.start();
 
 

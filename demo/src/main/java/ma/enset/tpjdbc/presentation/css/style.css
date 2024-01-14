@@ -1,0 +1,30 @@
+.button{
+    -fx-background-color:#a4ef34;
+    -fx-text-fill: #521b1b;
+    -fx-font-weight: bold;
+}
+.text-field{
+    -fx-background-color: rgba(25,161,169,0.3);
+    -fx-border-color:rgba(231,223,8,0.3) ;
+    -fx-border-radius: 5px;
+}
+.text-field:focused{
+    -fx-background-color: rgba(187,227,69,0.3);
+    -fx-border-color:rgb(231,223,8) ;
+    -fx-border-radius: 5px;
+}
+.cell:hover{
+    -fx-background-color: rgba(25,161,169,0.3);
+}
+.cell:focused{
+    -fx-background-color: rgba(211,227,66,0.3);
+    -fx-text-fill: black ;
+}
+.root{
+    -fx-background-color: rgba(197,227,66,0.1);
+    -fx-border-color: rgba(28,84,77,1);
+}
+.label{
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}

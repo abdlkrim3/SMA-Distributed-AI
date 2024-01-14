@@ -4,11 +4,11 @@ import jade.core.AID;
 
 public class AgentIterations implements Comparable{
     private AID aid;
-    private int fitness;
+    private int iteration;
 
-    public AgentIterations(AID aid, int fitness) {
+    public AgentIterations(AID aid, int iteration) {
         this.aid = aid;
-        this.fitness = fitness;
+        this.iteration = iteration;
     }
 
     public AID getAid() {
@@ -19,19 +19,19 @@ public class AgentIterations implements Comparable{
         this.aid = aid;
     }
 
-    public int getFitness() {
-        return fitness;
+    public int getIteration() {
+        return iteration;
     }
 
-    public void setFitness(int fitness) {
-        this.fitness = fitness;
+    public void setIteration(int iteration) {
+        this.iteration = iteration;
     }
     @Override
     public int compareTo(Object o) {
         AgentIterations agentIterations =(AgentIterations) o;
-        if (this.fitness> agentIterations.fitness)
+        if (this.iteration > agentIterations.iteration)
             return 1;
-        else if(this.fitness< agentIterations.fitness){
+        else if(this.iteration < agentIterations.iteration){
             return -1;
         }else
             return 0;
